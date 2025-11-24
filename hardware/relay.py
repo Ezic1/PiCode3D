@@ -2,6 +2,7 @@
 
 from gpiozero import OutputDevice
 import time
+import asyncio
 from .base_device import BaseDevice
 from hardware.gpio_pins import RELAY_ON_PIN, RELAY_OFF_PIN
 
@@ -16,7 +17,7 @@ class LatchingRelay(BaseDevice):
     def _pulse(self, device):
         self.log(f"Pulsing {device} for {self.pulse_time}s")
         device.on()
-        time.sleep(self.pulse_time)
+        await asyncio.sleep(self.pulse_time)
         device.off()
 
     def on(self):
