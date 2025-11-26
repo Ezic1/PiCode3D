@@ -32,3 +32,7 @@ Este codigo controla un Hardware especial encargado de manejar una impresora 3D 
 └── utils/
     ├── logger.py            # Sistema de logs
     └── async_helpers.py     # Funciones async reutilizables
+
+## Authors
+
+- [Mateo Casas](https://github.com/Ezic1)
