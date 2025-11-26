@@ -3,6 +3,7 @@
 
 Este codigo controla un Hardware especial encargado de manejar una impresora 3D a travez de MQTT.
 
+```http
 │
 ├── main.py                  # Punto de entrada. Inicia todo.
 ├── config/
@@ -32,6 +33,7 @@ Este codigo controla un Hardware especial encargado de manejar una impresora 3D 
 └── utils/
     ├── logger.py            # Sistema de logs
     └── async_helpers.py     # Funciones async reutilizables
+```
 
 ## Authors
 
