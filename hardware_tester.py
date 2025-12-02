@@ -3,10 +3,10 @@ import sys
 
 # Intentamos importar las clases desde el repo PiCode3D
 try:
-    from hardware.led import LED
-    from hardware.button import Button
-    from hardware.relay import Relay
-    from hardware.fan import Fan
+    from hardware.led import AsyncLed
+    from hardware.button import AsyncButton
+    from hardware.relay import LatchingRelay
+    from hardware.fan import AsyncFan
     from hardware.buzzer import Buzzer
     from hardware.gpio_pins import PINS
 except ImportError as e:
@@ -17,7 +17,7 @@ except ImportError as e:
 
 def test_led():
     print("Probando LED...")
-    led = LED()
+    led = AsyncLed(PINS.LED)
     print("Encendiendo LED 2 segundos...")
     led.on()
     time.sleep(2)
@@ -28,7 +28,7 @@ def test_led():
 
 def test_relay():
     print("Probando Relay...")
-    relay = Relay()
+    relay = LatchingRelay(PINS.RELAY)
     print("Activando relay 2 segundos...")
     relay.on()
     time.sleep(2)
@@ -50,7 +50,7 @@ def test_buzzer():
 
 def test_fan():
     print("Probando Fan (ventilador)...")
-    fan = Fan()
+    fan = AsyncFan(PINS.FAN)
     print("Encendiendo fan 3 segundos...")
     fan.on()
     time.sleep(3)
@@ -61,7 +61,7 @@ def test_fan():
 
 def test_button():
     print("Probando Button (espera a una pulsación)...")
-    btn = Button()
+    btn = AsyncButton(PINS.BUTTON)
     print("Presioná el botón, Ctrl+C para salir de la prueba.")
 
     try:
