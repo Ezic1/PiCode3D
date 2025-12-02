@@ -46,18 +46,6 @@ def test_buzzer():
     print("Apagando buzzer...")
     buz.off()
     print("Buzzer: prueba OK.")
-    buz.alert_error()
-    time.sleep(1)
-    buz.alert_ok()
-    time.sleep(1)
-    buz.alert_info()
-    time.sleep(1)
-    buz.alert_warning()
-    time.sleep(1)
-    buz.alert_critical()
-    time.sleep(1)
-    buz.alert_off()
-    print("Buzzer: prueba OK.")
 
 
 def test_fan():
