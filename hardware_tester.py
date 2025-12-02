@@ -8,7 +8,7 @@ try:
     from hardware.relay import LatchingRelay
     from hardware.fan import AsyncFan
     from hardware.buzzer import Buzzer
-    from hardware.gpio_pins import STATUS_LED_PIN
+    from hardware.gpio_pins import STATUS_LED_PIN, BUTTON_PIN, FAN_PIN, FAN_BF_PIN, BUZZER_PIN
 except ImportError as e:
     print("ERROR al importar PiCode3D hardware modules:", e)
     print("Asegurate de que el script está ejecutándose desde la carpeta raíz del proyecto PiCode3D.")
@@ -39,29 +39,44 @@ def test_relay():
 
 def test_buzzer():
     print("Probando Buzzer...")
-    buz = Buzzer()
+    buz = Buzzer(BUZZER_PIN)
     print("Activando buzzer 1 segundo...")
     buz.on()
     time.sleep(1)
     print("Apagando buzzer...")
     buz.off()
     print("Buzzer: prueba OK.")
+    buz.alert_error()
+    time.sleep(1)
+    buz.alert_ok()
+    time.sleep(1)
+    buz.alert_info()
+    time.sleep(1)
+    buz.alert_warning()
+    time.sleep(1)
+    buz.alert_critical()
+    time.sleep(1)
+    buz.alert_off()
+    print("Buzzer: prueba OK.")
 
 
 def test_fan():
     print("Probando Fan (ventilador)...")
-    fan = AsyncFan(PINS.FAN)
+    fan = AsyncFan(FAN_PIN, FAN_BF_PIN)
     print("Encendiendo fan 3 segundos...")
-    fan.on()
+    fan.set_speed(0.5)
+    time.sleep(3)
+    fan.set_speed(1.0)
     time.sleep(3)
     print("Apagando fan...")
-    fan.off()
+    fan.set_speed(0.0)
     print("Fan: prueba OK.")
+    print("Fan FB No probado.")
 
 
 def test_button():
     print("Probando Button (espera a una pulsación)...")
-    btn = AsyncButton(PINS.BUTTON)
+    btn = AsyncButton(BUTTON_PIN)
     print("Presioná el botón, Ctrl+C para salir de la prueba.")
 
     try:
