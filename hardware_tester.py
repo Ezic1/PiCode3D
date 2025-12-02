@@ -8,7 +8,7 @@ try:
     from hardware.relay import LatchingRelay
     from hardware.fan import AsyncFan
     from hardware.buzzer import Buzzer
-    from hardware.gpio_pins import PINS
+    from hardware.gpio_pins import STATUS_LED_PIN
 except ImportError as e:
     print("ERROR al importar PiCode3D hardware modules:", e)
     print("Asegurate de que el script está ejecutándose desde la carpeta raíz del proyecto PiCode3D.")
@@ -17,7 +17,7 @@ except ImportError as e:
 
 def test_led():
     print("Probando LED...")
-    led = AsyncLed(PINS.LED)
+    led = AsyncLed(STATUS_LED_PIN)
     print("Encendiendo LED 2 segundos...")
     led.on()
     time.sleep(2)
